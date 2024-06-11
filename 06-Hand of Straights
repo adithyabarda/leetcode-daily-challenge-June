@@ -1,0 +1,31 @@
+class Solution {
+    public boolean isNStraightHand(int[] hand, int groupSize) {
+        if(hand.length%groupSize!=0)
+        {
+            return false;
+        }
+        Arrays.sort(hand);
+        HashMap<Integer,Integer> ans = new HashMap<>();
+        for(int i=0;i<hand.length;i++)
+        {
+            ans.put(hand[i],ans.getOrDefault(hand[i],0)+1);
+        }
+        for(int num:hand)
+        {
+            if(ans.get(num)==0)
+            {
+                continue;
+            }
+            for(int i=0;i<groupSize;i++)
+            {
+                int curr=num+i;
+                if(ans.getOrDefault(curr,0)==0)
+                {
+                    return false;
+                }
+                ans.put(curr,ans.get(curr)-1);
+            }
+        }
+     return true;
+    }
+}
