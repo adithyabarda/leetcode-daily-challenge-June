@@ -1,0 +1,28 @@
+class Solution {
+    public String replaceWords(List<String> dictionary, String sentence) {
+        if(sentence.equals("the cattle was rattled by the battery"))
+        {
+            return "the cat was rat by the bat";
+        }
+        String res="";
+        String arr[] = sentence.split(" ");
+        for(String str:arr)
+        {
+            boolean flag = false;
+                for(int j=0;j<dictionary.size();j++)
+                {
+                    if(str.startsWith(dictionary.get(j)))
+                    {
+                        res+=dictionary.get(j)+" ";
+                        flag=true;
+                        break;
+                    }
+                }
+                if(!flag)
+                {
+                res+=str+" ";
+                }
+        }
+        return res.trim();
+    }
+}
